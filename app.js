@@ -13,10 +13,10 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.static(`${__dirname}/public`));
 // Middleware
-app.use((req, res, next) => {
-  console.log('Middleware !!!!');
-  next(); // request will stuck without next()
-});
+// app.use((req, res, next) => {
+//   console.log('Middleware !!!!');
+//   next(); // request will stuck without next()
+// });
 
 // app.use((req, res, next) => {
 //   req.requestTime = new Date().toISOString();
