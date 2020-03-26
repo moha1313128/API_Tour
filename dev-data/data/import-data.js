@@ -4,15 +4,18 @@ const mongoose = require('mongoose');
 const Tour = require('./../../models/tourModel');
 dotenv.config({ path: './config.env' });
 // const DB = process.env.DATABASE_LOCAL;
-mongoose.connect('mongodb://localhost:27017/api', {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-    useUnifiedTopology: true
-}).then(() =>
-    // console.log(con.connection);
-    console.log('DB Connected')
-);
+// const DB = process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PASSWORD);
+mongoose
+    // .connect('mongodb://localhost:27017/api', {
+    .connect('mongodb+srv://moha2004:P10IO2WjEpdC04Xw@cluster0-oog4k.mongodb.net/api?retryWrites=true&w=majority', {
+        useNewUrlParser: true,
+        useCreateIndex: true,
+        useFindAndModify: false,
+        useUnifiedTopology: true
+    }).then(() =>
+        // console.log(con.connection);
+        console.log('DB Connected')
+    );
 // Read JSON File
 const tours = JSON.parse(fs.readFileSync(`${__dirname}/tours-simple.json`, 'utf-8'));
 // Import Data Into DB
