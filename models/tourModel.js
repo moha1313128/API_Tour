@@ -16,16 +16,16 @@ const tourSchema = new mongoose.Schema({
     },
     duration: {
         type: Number,
-        required: [true, 'Name is required'],
+        required: [true, 'duration is required'],
         trim: true
     },
     maxGroupSize: {
         type: Number,
-        required: [true, 'Name is required']
+        required: [true, 'maxGroupSize is required']
     },
     difficulty: {
         type: String,
-        required: [true, 'Name is required'],
+        required: [true, 'difficulty is required'],
         enum: {
             values: ['easy', 'medium', 'difficult'],
             message: 'Difficulty is either: easy, medium, difficult',

@@ -10,6 +10,7 @@ router.route('/monthy-plan/:year').get(tourController.getMonthyPlan);
 
 router
   .route('/')
+  // .get(catchAsync(tourController.getAllTours))
   .get(tourController.getAllTours)
   .post(tourController.createTour);
 
