@@ -1,7 +1,8 @@
 const express = require('express');
 const morgan = require('morgan');
-const tourRouter = require('./router/tourRouter');
-const userRouter = require('./router/usersRoute');
+const tourRoute = require('./router/tourRoute');
+const userRoute = require('./router/usersRoute');
+const reviewRoute = require('./router/reviewRoute');
 const globalErrorHandler = require('./controllers/errorController');
 const AppError = require('./utils/appError');
 const rateLimit = require('express-rate-limit');
@@ -58,8 +59,9 @@ app.use((req, res, next) => {
   next(); // request will stuck without next()
 });
 
-app.use('/api/v1/tours', tourRouter);
-app.use('/api/v1/users', userRouter);
+app.use('/api/v1/tours', tourRoute);
+app.use('/api/v1/users', userRoute);
+app.use('/api/v1/reviews', reviewRoute);
 app.all('*', (req, res, next) => {
   // res.status(404).json({
   //   status: 'Fail',

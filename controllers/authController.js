@@ -57,7 +57,21 @@ exports.login = catchAsync(async (req, res, next) => {
     // 2) Check if user exists && password is correct
     const user = await User.findOne({ email }).select('+password');
     // console.log(user);
-    if (!user || !(await user.correctPassword(password, user.password))) {
+    // if (!user || !(await user.correctPassword(password, user.password))) {
+    //     return next(new AppError('Incorrect email or password', 401));
+    // }
+    if (!user) {
+        if (!passowrd) {
+            bcrypt.compare(password.toString(), user.password, (err, isMatch) => {
+                if (err) throw err;
+                if (isMatch) {
+                    resolve(user);
+                } else {
+                    //Password Wrong
+                    reject("Auth Failed");
+                }
+            });
+        }
         return next(new AppError('Incorrect email or password', 401));
     }
     // 3) If everything ok, send token to client
